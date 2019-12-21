@@ -13,13 +13,24 @@ public class RandomTerrain : MonoBehaviour
 
     void Start()
     {
+        //Set the terrain to the size of the size we set in the editor
         terrainToRandomize.terrainData.size = terrainSize;
+        terrainToRandomize.transform.position = new Vector3(-(terrainSize.x / 2), 0, -(terrainSize.z / 2));
+
+        //Set where the perlin noise starts
         float xOffset = Random.Range(minOffset, maxOffset);
         float yOffset = Random.Range(minOffset, maxOffset);
 
         PerlinizeTerrain(terrainToRandomize, xOffset, yOffset, perlinCoordSpacing);
     }
 
+    /// <summary>
+    /// Set a terrain's heightmap to a chunk of perlin noise.
+    /// </summary>
+    /// <param name="terrainToPerlinize">Terrain to give a perlin height map.</param>
+    /// <param name="xOffset">The starting X coord of the perlin space we're getting.</param>
+    /// <param name="yOffset">The starting Y coord of the perlin space we're getting.</param>
+    /// <param name="spacing">How close the entries of the height map are on the perlin space. Smaller = smoother</param>
     private void PerlinizeTerrain(Terrain terrainToPerlinize, float xOffset, float yOffset, float spacing)
     {
         //Make a height array
