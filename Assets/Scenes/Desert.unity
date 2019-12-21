@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrainToRandomize: {fileID: 2061194590}
-  terrainSize: {x: 100, y: 25, z: 100}
+  terrainSize: {x: 500, y: 30, z: 500}
   minOffset: 100
   maxOffset: 1000
   perlinCoordSpacing: 0.01
