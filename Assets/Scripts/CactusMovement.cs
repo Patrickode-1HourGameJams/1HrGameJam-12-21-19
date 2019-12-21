@@ -28,11 +28,11 @@ public class CactusMovement : MonoBehaviour
         //Move cactus forward or back moveSpeed units
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(transform.position.x, transform.position.y, transform.position.z + moveSpeed);
+            transform.Translate(0, 0, moveSpeed);
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(transform.position.x, transform.position.y, transform.position.z - moveSpeed);
+            transform.Translate(0, 0, -moveSpeed);
         }
 
         //Turn cactus by turnSpeed degrees
