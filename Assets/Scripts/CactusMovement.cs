@@ -6,6 +6,7 @@ public class CactusMovement : MonoBehaviour
 {
     public float moveSpeed = 0.5f;
     public float turnSpeed = 0.5f;
+    public float heightOffset;
 
     void Update()
     {
@@ -20,7 +21,12 @@ public class CactusMovement : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(transform.forward, terrainNormal);
 
         //Set the height to be the height of the terrain (I found the long decimal myself to make the bottom mostly align)
-        transform.position = new Vector3(transform.position.x, Terrain.activeTerrain.SampleHeight(transform.position), transform.position.z);
+        transform.position = new Vector3
+            (
+                transform.position.x,
+                Terrain.activeTerrain.SampleHeight(transform.position) + heightOffset,
+                transform.position.z
+            );
     }
 
     private void MoveLogic()
@@ -38,11 +44,19 @@ public class CactusMovement : MonoBehaviour
         //Turn cactus by turnSpeed degrees
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.rotation = Quaternion.AngleAxis(-turnSpeed, transform.up);
+            transform.Rotate
+                (
+                    transform.up,
+                    -turnSpeed
+                );
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            transform.rotation = Quaternion.AngleAxis(turnSpeed, transform.up);
+            transform.Rotate
+                (
+                    transform.up,
+                    turnSpeed
+                );
         }
     }
 
