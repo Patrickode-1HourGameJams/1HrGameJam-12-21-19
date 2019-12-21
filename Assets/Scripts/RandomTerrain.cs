@@ -5,11 +5,19 @@ using UnityEngine;
 public class RandomTerrain : MonoBehaviour
 {
     public Terrain terrainToRandomize;
-    public Vector3 terrainSize;
+    
+    public Vector3 terrainSize = new Vector3(100, 25, 100);
+    public float minOffset = 100;
+    public float maxOffset = 1000;
+    public float perlinCoordSpacing = 0.01f;
 
     void Start()
     {
-        
+        terrainToRandomize.terrainData.size = terrainSize;
+        float xOffset = Random.Range(minOffset, maxOffset);
+        float yOffset = Random.Range(minOffset, maxOffset);
+
+        PerlinizeTerrain(terrainToRandomize, xOffset, yOffset, perlinCoordSpacing);
     }
 
     private void PerlinizeTerrain(Terrain terrainToPerlinize, float xOffset, float yOffset, float spacing)
